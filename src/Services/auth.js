@@ -7,4 +7,10 @@ export const login = async (data) => {
   return res.data;
 };
 
+export const refresh = async (data) => {
+  let url = endpoints.auth.refresh;
+  let res = await http.post(url, data, { crossdomain: true });
+  return res.data;
+};
+
 export default login;

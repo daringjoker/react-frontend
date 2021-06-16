@@ -1,9 +1,13 @@
 import React from "react";
 import "./loginform.css";
+import withAuthPrivilege from "../../HOC/auth";
 import { useFormik } from "formik";
-import { login } from "../../Services/auth";
+import history from "../../Utilites/history";
+import * as routes from "../../Constants/Routes";
 //demo of a functional component
-const LoginForm = () => {
+const LoginForm = (props) => {
+  let { login, isLoggedIn } = props;
+  if (isLoggedIn) history.push(routes.HOME);
   const formik = useFormik({
     initialValues: {
       username: "",
@@ -53,4 +57,4 @@ const LoginForm = () => {
     </form>
   );
 };
-export default LoginForm;
+export default withAuthPrivilege(LoginForm);

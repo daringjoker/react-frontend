@@ -1,22 +1,70 @@
-const React,{ Component } = require("react");
+import { connect } from "react-redux";
+import { Component } from "react";
+import { bindActionCreators } from "redux";
+import history from "../Utilites/history";
+import * as routes from "../Constants/Routes";
+import * as authService from "../Services/auth";
+import * as userService from "../Services/user";
+import * as tokenService from "../Services/token";
+import { setLoggingIn, setLoggedIn, setAuthUser } from "../Actions/Data/auth";
 
-
-
-
-const withAuthPrivelage=()=>{
-  class AuthPrivleged extends Component{
-    login = async (email,password) => {
-
-    }
+const withAuthPrivilege = (InnerComponent) => {
+  class AuthPrivleged extends Component {
+    login = async (loginData) => {
+      try {
+        let { setLoggingIn, setLoggedIn, setAuthUser } = this.props;
+        setLoggingIn(true);
+        let { username, password, remember } = loginData;
+        let responseData = await authService.login({
+          username,
+          password,
+          remember,
+        });
+        if (responseData.status === "success") {
+          let { transactionToken, persistentToken } = responseData.data;
+          tokenService.saveTokens(transactionToken, persistentToken);
+          let userData = await userService.fetchSelf();
+          setAuthUser(userData.data);
+          setLoggingIn(false);
+          setLoggedIn(true);
+          history.push(routes.HOME);
+        }
+      } catch {
+        alert("Sorry cannot login at the moment");
+      }
+    };
 
     logout = () => {
-        
-    }
-    register = (username,email,password) => {
-
-    }
+      alert("logged out");
+    };
+    register = async (username, email, password) => {};
     render() {
+      return (
+        <InnerComponent
+          {...this.props}
+          login={this.login}
+          logout={this.logout}
+          register={this.register}
+        />
+      );
+    }
+  }
+  const mapStateToProps = (state) => {
+    let { isLoggedIn, isLoggingIn, user } = state.data.auth;
+    return {
+      isLoggedIn,
+      isLoggingIn,
+      authenticatedUser: user,
+    };
+  };
 
-    }
-    }
-}
+  const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators(
+      { setAuthUser, setLoggingIn, setLoggedIn },
+      dispatch
+    );
+  };
+  return connect(mapStateToProps, mapDispatchToProps)(AuthPrivleged);
+};
+
+export default withAuthPrivilege;
