@@ -1,5 +1,5 @@
-import * as authService from "../services/auth";
-import * as tokenService from "../services/token";
+import * as authService from "../Services/auth";
+import * as tokenService from "../Services/token";
 
 import http from "./http";
 
@@ -15,11 +15,7 @@ function buildAuthHeader(transactionToken) {
 
 export function requestInterceptor(request) {
   const transactionToken = tokenService.getTransactionToken();
-
-  if (transactionToken && !request.headers[AUTHORIZATION_HEADER]) {
-    request.headers[AUTHORIZATION_HEADER] = buildAuthHeader(transactionToken);
-  }
-
+  request.headers[AUTHORIZATION_HEADER] = buildAuthHeader(transactionToken);
   return request;
 }
 

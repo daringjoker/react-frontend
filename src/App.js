@@ -1,6 +1,6 @@
 import "./App.css";
 import { Router, Route, Switch } from "react-router-dom";
-import history from "./Utilites/history";
+import history from "./Utilities/history";
 import HomePage from "./Routes/home";
 import LoginPage from "./Routes/login";
 import RegisterPage from "./Routes/register";

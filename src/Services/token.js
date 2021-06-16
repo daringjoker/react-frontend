@@ -1,4 +1,4 @@
-import * as storage from "../Utilites/storage";
+import * as storage from "../Utilities/storage";
 
 import { TRANSACTION_TOKEN, PERSISTENT_TOKEN } from "../Constants/tokens";
 

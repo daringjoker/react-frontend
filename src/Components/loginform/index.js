@@ -2,7 +2,7 @@ import React from "react";
 import "./loginform.css";
 import withAuthPrivilege from "../../HOC/auth";
 import { useFormik } from "formik";
-import history from "../../Utilites/history";
+import history from "../../Utilities/history";
 import * as routes from "../../Constants/Routes";
 //demo of a functional component
 const LoginForm = (props) => {

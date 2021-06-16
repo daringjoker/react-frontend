@@ -1,4 +1,4 @@
-import http from "utils/http";
+import http from "./Utilities/http";
 
 import * as interceptors from "./Utilities/interceptors";
 

@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { Component } from "react";
 import { bindActionCreators } from "redux";
-import history from "../Utilites/history";
+import history from "../Utilities/history";
 import * as routes from "../Constants/Routes";
 import * as authService from "../Services/auth";
 import * as userService from "../Services/user";
