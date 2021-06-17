@@ -5,9 +5,16 @@ import withAuthPrivilege from "../../HOC/auth";
 import logoutimg from "./logout.png";
 import "./navbar.css";
 class NavBar extends Component {
+  getclass(name) {
+    let { active } = this.props;
+    if (!active) active = "";
+    active = active.toLowerCase();
+    name = name.toLowerCase();
+    if (active === name) return "active";
+    else return null;
+  }
   render() {
     let { authenticatedUser, logout } = this.props;
-    console.log(authenticatedUser);
     return (
       <nav className="navigation">
         <div className="left-group">
@@ -15,15 +22,18 @@ class NavBar extends Component {
             <h1 className="logo">DARECHAN</h1>
           </Link>
           <div className="links">
-            <Link to="/">Home</Link>
-            <Link to="/chans">Chans</Link>
-            <Link to="/random">Randoms</Link>
+            <Link className={this.getclass("home")} to="/">
+              Home
+            </Link>
+            <Link className={this.getclass("chans")} to="/chans">
+              Chans
+            </Link>
+            <Link className={this.getclass("random")} to="/random">
+              Randoms
+            </Link>
           </div>
         </div>
-        <div
-          className="profile-control"
-          style={{ backgroundColor: authenticatedUser.key_color }}
-        >
+        <div className="profile-control" style={{ backgroundColor: authenticatedUser.key_color }}>
           <img
             src={endpoints.baseUrl + authenticatedUser.profile_picture}
             alt="Profile pic"

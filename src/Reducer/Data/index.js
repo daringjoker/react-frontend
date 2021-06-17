@@ -3,6 +3,7 @@ import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
 import auth from "./auth";
+import chans from "./chans";
 
 const authPersistConfig = {
   key: "auth",
@@ -11,4 +12,5 @@ const authPersistConfig = {
 
 export default combineReducers({
   auth: persistReducer(authPersistConfig, auth),
+  chans,
 });

@@ -8,4 +8,8 @@ module.exports = {
   user: {
     self: "/api/user",
   },
+  chans: {
+    getAll: "/api/chans",
+    getThreads: "/api/chans/:chanId",
+  },
 };

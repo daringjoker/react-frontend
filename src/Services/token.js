@@ -6,7 +6,9 @@ export function saveTokens(transactionToken, persistentToken) {
   storage.set(TRANSACTION_TOKEN, transactionToken);
   storage.set(PERSISTENT_TOKEN, persistentToken);
 }
-
+export function clear() {
+  storage.clear();
+}
 export function getTransactionToken() {
   return storage.get(TRANSACTION_TOKEN);
 }

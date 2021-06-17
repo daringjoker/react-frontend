@@ -5,16 +5,14 @@
 }
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
 .btn {
@@ -52,4 +50,51 @@ code {
 
 .btn-sec:hover {
   background-color: #ba135d;
+}
+
+.chan-tile {
+  box-shadow: 1px 1px 15px #333;
+  background: red;
+  padding: 20px 40px;
+  width: 80%;
+  max-width: 900px;
+  margin: 30px auto;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.chan-title {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+.chan-title > h2 {
+  text-transform: uppercase;
+  font-size: 1.5em;
+  font-weight: 400;
+  padding-right: 10px;
+}
+.chan-title > small {
+  font-family: Helvetica;
+  font-size: 1.2em;
+  font-weight: lighter;
+  letter-spacing: 2px;
+}
+.chan-info > p {
+  text-align: justify;
+}
+.chan-info > .description {
+  font-size: 0.9em;
+  display: block;
+  padding-top: 5px;
+}
+.chan-stats {
+  padding: 20px;
+  min-width: max-content;
+}
+
+.chan-actions {
+  padding: 10px;
+  min-width: max-content;
 }

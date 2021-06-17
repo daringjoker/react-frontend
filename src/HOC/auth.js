@@ -1,8 +1,8 @@
-import { connect } from "react-redux";
 import { Component } from "react";
-import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
 import history from "../Utilities/history";
-import * as routes from "../Constants/Routes";
+import { bindActionCreators } from "redux";
+import * as routes from "../Constants/routes";
 import * as authService from "../Services/auth";
 import * as userService from "../Services/user";
 import * as tokenService from "../Services/token";
@@ -33,20 +33,16 @@ const withAuthPrivilege = (InnerComponent) => {
         alert("Sorry cannot login at the moment");
       }
     };
-
-    logout = () => {
-      alert("logged out");
+    logout = async () => {
+      let { setLoggedIn, setAuthUser } = this.props;
+      setLoggedIn(false);
+      setAuthUser({});
+      tokenService.clear();
+      history.push(routes.LOGIN);
     };
     register = async (username, email, password) => {};
     render() {
-      return (
-        <InnerComponent
-          {...this.props}
-          login={this.login}
-          logout={this.logout}
-          register={this.register}
-        />
-      );
+      return <InnerComponent {...this.props} login={this.login} logout={this.logout} register={this.register} />;
     }
   }
   const mapStateToProps = (state) => {
@@ -59,10 +55,7 @@ const withAuthPrivilege = (InnerComponent) => {
   };
 
   const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators(
-      { setAuthUser, setLoggingIn, setLoggedIn },
-      dispatch
-    );
+    return bindActionCreators({ setAuthUser, setLoggingIn, setLoggedIn }, dispatch);
   };
   return connect(mapStateToProps, mapDispatchToProps)(AuthPrivleged);
 };

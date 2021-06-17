@@ -25,7 +25,8 @@ a {
 .links a {
   padding: 5px 20px;
 }
-.links a:hover {
+.links a:hover,
+.active {
   color: yellow;
   border-bottom: 2px solid yellow;
   text-shadow: yellow 1px 1px 20px;

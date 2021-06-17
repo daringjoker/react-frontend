@@ -1,5 +1,5 @@
 import endpoints from "./endpoints";
-import * as routes from "./Routes";
+import * as routes from "./routes";
 import * as tokenNames from "./tokens";
 
 const constants = {

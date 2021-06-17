@@ -1,9 +1,10 @@
-import React from "react";
 import "./loginform.css";
-import withAuthPrivilege from "../../HOC/auth";
+import React from "react";
 import { useFormik } from "formik";
 import history from "../../Utilities/history";
-import * as routes from "../../Constants/Routes";
+import withAuthPrivilege from "../../HOC/auth";
+import * as routes from "../../Constants/routes";
+
 //demo of a functional component
 const LoginForm = (props) => {
   let { login, isLoggedIn } = props;
@@ -18,21 +19,10 @@ const LoginForm = (props) => {
       login(values);
     },
   });
-
   return (
-    <form
-      className="login-form form"
-      autoComplete="off"
-      onSubmit={formik.handleSubmit}
-    >
+    <form className="login-form form" autoComplete="off" onSubmit={formik.handleSubmit}>
       <label htmlFor="username">Username/Email</label>
-      <input
-        id="username"
-        name="username"
-        type="text"
-        onChange={formik.handleChange}
-        value={formik.values.username}
-      />
+      <input id="username" name="username" type="text" onChange={formik.handleChange} value={formik.values.username} />
       <label htmlFor="password">Password</label>
       <input
         id="password"
