@@ -1,7 +1,6 @@
+import http from "./http";
 import * as authService from "../Services/auth";
 import * as tokenService from "../Services/token";
-
-import http from "./http";
 
 const RETRY_COUNT_LIMIT = 3;
 const TOKEN_EXPIRE = "Transaction Token Expired";

@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import LoginForm from "../Components/loginform/index";
-import "./home.css";
-
 class LoginPage extends Component {
   render() {
     return (

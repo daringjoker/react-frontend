@@ -12,4 +12,13 @@ module.exports = {
     getAll: "/api/chans",
     getThreads: "/api/chans/:chanId",
   },
+  thread: {
+    getPosts: "/api/threads/:threadId/posts",
+    create: "/api/threads",
+  },
+  posts: {
+    getAll: "/api/post",
+    create: "/api/post",
+    remove: "/api/post/:postId",
+  },
 };

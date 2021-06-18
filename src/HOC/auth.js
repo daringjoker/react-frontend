@@ -1,4 +1,5 @@
 import { Component } from "react";
+import http from "../Utilities/http";
 import { connect } from "react-redux";
 import history from "../Utilities/history";
 import { bindActionCreators } from "redux";
@@ -40,7 +41,13 @@ const withAuthPrivilege = (InnerComponent) => {
       tokenService.clear();
       history.push(routes.LOGIN);
     };
-    register = async (username, email, password) => {};
+    register = async (data) => {
+      let response = await http.post("/api/register", data);
+      if (response.data.status === "success") {
+        history.push(routes.LOGIN);
+        alert("registration successful");
+      }
+    };
     render() {
       return <InnerComponent {...this.props} login={this.login} logout={this.logout} register={this.register} />;
     }

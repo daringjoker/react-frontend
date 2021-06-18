@@ -1,5 +1,5 @@
-import endpoints from "../Constants/endpoints";
 import http from "../Utilities/http";
+import endpoints from "../Constants/endpoints";
 
 export const login = async (data) => {
   let url = endpoints.auth.login;
@@ -12,7 +12,6 @@ export const refresh = async (data) => {
   let res = await http.post(url, data, { crossdomain: true });
   return res.data;
 };
-export const logout = async (data) => {
-  
-}
+
+export const logout = async (data) => {};
 export default login;

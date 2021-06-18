@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import { Route, Redirect } from "react-router-dom";
-
-import * as routes from "../../Constants/routes";
-
 import withAuthPrivilege from "../../HOC/auth";
+import * as routes from "../../Constants/routes";
+import { Route, Redirect } from "react-router-dom";
 class PrivateRoute extends Component {
   render() {
     let { isLoggedIn } = this.props;

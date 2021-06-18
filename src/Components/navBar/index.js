@@ -1,9 +1,8 @@
 import { Component } from "react";
-import { Link } from "react-router-dom";
-import endpoints from "../../Constants/endpoints";
-import withAuthPrivilege from "../../HOC/auth";
 import logoutimg from "./logout.png";
-import "./navbar.css";
+import { Link } from "react-router-dom";
+import withAuthPrivilege from "../../HOC/auth";
+import endpoints from "../../Constants/endpoints";
 class NavBar extends Component {
   getclass(name) {
     let { active } = this.props;
@@ -13,8 +12,10 @@ class NavBar extends Component {
     if (active === name) return "active";
     else return null;
   }
+
   render() {
     let { authenticatedUser, logout } = this.props;
+
     return (
       <nav className="navigation">
         <div className="left-group">
@@ -25,9 +26,9 @@ class NavBar extends Component {
             <Link className={this.getclass("home")} to="/">
               Home
             </Link>
-            <Link className={this.getclass("chans")} to="/chans">
+            {/* <Link className={this.getclass("chans")} to="/chans">
               Chans
-            </Link>
+            </Link> */}
             <Link className={this.getclass("random")} to="/random">
               Randoms
             </Link>

@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import RegisterForm from "../Components/registerform/index";
-import "./home.css";
-
 class RegisterPage extends Component {
   render() {
     return (

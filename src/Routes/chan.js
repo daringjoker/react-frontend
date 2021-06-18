@@ -1,17 +1,14 @@
-import "./home.css";
+import http from "../Utilities/http";
+import { Link } from "react-router-dom";
 import React, { Component } from "react";
 import NavBar from "../Components/navBar";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { addChans, deleteChan } from "../Actions/Data/chans";
-import http from "../Utilities/http";
 import endpoints from "../Constants/endpoints";
-
+import PostComposer from "../Components/postComposer";
 class ChanPage extends Component {
   state = {
     threads: [],
   };
+
   componentDidMount = () => {
     let { match } = this.props;
     let chanIdentifier = match.params.chanId;
@@ -20,16 +17,43 @@ class ChanPage extends Component {
       this.setState({ threads: data });
     });
   };
+
+  createThread(values) {
+    let { match } = this.props;
+    let chanId = match.params.chanId;
+    let data = {
+      chan_id: chanId,
+      title: values.content,
+    };
+    http.put(endpoints.thread.create, data).then((response) => {
+      console.log(response.data);
+      if (response.data.status === "success") {
+        this.setState({ threads: [{ ...data, id: response.data.data[0] }, ...this.state.threads] });
+      }
+    });
+  }
+
   render() {
+    let { match } = this.props;
+    let chanId = match.params.chanId;
+
     return (
       <div>
         <NavBar />
+        <PostComposer
+          thread={chanId}
+          action={this.createThread.bind(this)}
+          title="Create a New Thread"
+          placeholder="Title of the Thread"
+        />
         {this.state.threads.map((thread) => {
           return (
             <div key={thread.id} className="thread-tile">
-              <Link to={"/threads/" + thread.id}>
+              <div className="thread-identifier">{"/threads/" + thread.id}</div>
+              <Link to={"/thread/" + thread.id}>
                 <h2>{thread.title}</h2>
               </Link>
+              <div className="thread-created">{"Created at: " + thread.created_at}</div>
             </div>
           );
         })}
@@ -37,10 +61,5 @@ class ChanPage extends Component {
     );
   }
 }
-const mapStateToProps = (state) => {
-  return { chanList: state.data.chans };
-};
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ addChans, deleteChan }, dispatch);
-};
-export default connect(mapStateToProps, mapDispatchToProps)(ChanPage);
+
+export default ChanPage;

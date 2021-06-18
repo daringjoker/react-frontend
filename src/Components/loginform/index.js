@@ -1,4 +1,3 @@
-import "./loginform.css";
 import React from "react";
 import { useFormik } from "formik";
 import history from "../../Utilities/history";
@@ -19,6 +18,7 @@ const LoginForm = (props) => {
       login(values);
     },
   });
+
   return (
     <form className="login-form form" autoComplete="off" onSubmit={formik.handleSubmit}>
       <label htmlFor="username">Username/Email</label>
